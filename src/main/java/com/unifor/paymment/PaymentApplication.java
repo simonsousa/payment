@@ -35,10 +35,22 @@ public class PaymentApplication {
 			PaymentContext context2 = new PaymentContext(pix);
 			context2.executePayment(150);
 
+            //Pagamento via Boleto
+            PaymentStrategy boleto = PaymentFactory.createPayment(
+                    "boleto",
+                    "12345678901234567890123456789012345678901234123456",
+                    "Caixa Econômica Federal",
+                    "Pedro Pereira da Silva",
+                    "123-245-212-09"
+            );
 
-		} catch (PaymentException e) {
+            PaymentContext context3 = new PaymentContext(boleto);
+            context3.executePayment(45.67);
+
+        } catch (PaymentException e) {
 			System.out.println("Erro: "+e.getMessage());
 		}
+
 	}
 
 }

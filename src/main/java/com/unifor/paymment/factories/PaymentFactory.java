@@ -3,11 +3,18 @@ package com.unifor.paymment.factories;
 import com.unifor.paymment.exceptions.PaymentException;
 import com.unifor.paymment.interfaces.PaymentStrategy;
 import com.unifor.paymment.strategies.CreditCardPayment;
+import com.unifor.paymment.strategies.PaymentByBankSlip;
 import com.unifor.paymment.strategies.PixPayment;
 
 public class PaymentFactory {
     public static PaymentStrategy createPayment(String type, String ... params) throws PaymentException {
         switch (type.toLowerCase()) {
+            case "boleto":
+                if (params.length < 4) {
+                    throw new PaymentException("Dados do boleto bancário incompletos");
+                }
+                return new PaymentByBankSlip(params[0], params[1], params[2], params[3]);
+
             case "creditcard":
                 if (params.length < 4) {
                     throw new PaymentException("Dados do cartão incompleto");

@@ -24,13 +24,14 @@ public class CreditCardPayment implements PaymentStrategy {
 
         //implementa sua regra de negocio
         System.out.println("Pagamento de R$"
-                + amount + "realizado com " +
+                + amount + " realizado com " +
                 "cartão de crédito: " + cardNumber +
-                "em nome de " + name);
+                " em nome de " + name);
     }
 
     @Override
     public String getPaymentDetails() {
         return "Cartão de credito " + cardNumber + " Nome: " + name;
+
     }
 }
