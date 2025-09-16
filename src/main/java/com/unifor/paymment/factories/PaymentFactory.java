@@ -9,7 +9,7 @@ import com.unifor.paymment.strategies.PixPayment;
 public class PaymentFactory {
     public static PaymentStrategy createPayment(String type, String ... params) throws PaymentException {
         switch (type.toLowerCase()) {
-            case "boleto":
+            case "bankslip":
                 if (params.length < 4) {
                     throw new PaymentException("Dados do boleto bancário incompletos");
                 }

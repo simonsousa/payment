@@ -4,6 +4,7 @@ import com.unifor.paymment.context.PaymentContext;
 import com.unifor.paymment.exceptions.PaymentException;
 import com.unifor.paymment.factories.PaymentFactory;
 import com.unifor.paymment.interfaces.PaymentStrategy;
+import com.unifor.paymment.singleton.Singleton;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -21,9 +22,9 @@ public class PaymentApplication {
 					"Jully Emerson",
 					"12/26"
 			);
-
-			PaymentContext context1 = new PaymentContext(creditCard);
-			context1.executePayment(55.17);
+            PaymentContext context1 = Singleton.getPaymentContext();
+            context1 = new PaymentContext(creditCard); // se quiser, pode definir direto no construtor
+            context1.executePayment(55.17);
 
 			//Pagamento via PIX
 			PaymentStrategy pix = PaymentFactory.createPayment(
@@ -36,15 +37,15 @@ public class PaymentApplication {
 			context2.executePayment(150);
 
             //Pagamento via Boleto
-            PaymentStrategy boleto = PaymentFactory.createPayment(
-                    "boleto",
+            PaymentStrategy bankslip = PaymentFactory.createPayment(
+                    "bankslip",
                     "12345678901234567890123456789012345678901234123456",
                     "Caixa Econômica Federal",
                     "Pedro Pereira da Silva",
                     "123-245-212-09"
             );
 
-            PaymentContext context3 = new PaymentContext(boleto);
+            PaymentContext context3 = new PaymentContext(bankslip);
             context3.executePayment(45.67);
 
         } catch (PaymentException e) {

@@ -10,6 +10,8 @@ public class PaymentContext {
         this.paymentStrategy = paymentStrategy;
     }
 
+    public PaymentContext() {} // público para o Singleton poder instanciar
+
     public void executePayment(double amount) {
         try {
             paymentStrategy.pay(amount);

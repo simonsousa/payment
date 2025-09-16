@@ -3,7 +3,6 @@ package com.unifor.paymment.strategies;
 import com.unifor.paymment.exceptions.PaymentException;
 import com.unifor.paymment.interfaces.PaymentStrategy;
 
-
 public class PaymentByBankSlip implements PaymentStrategy {
     private String idBoleto;
     private String beneficiario;
